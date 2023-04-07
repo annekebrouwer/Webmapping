@@ -16,7 +16,7 @@
           body { margin:0; padding:0; }
      #map { position:absolute; top:0; bottom:0; width:100%; }
      #title {z-index: 9999; 
-        background-color:rgb(155, 209, 191); 
+        background-color:rgb(238, 238, 165); 
         opacity: 80%; 
         text-align: center;
         color: rgb(58, 3, 35);
@@ -71,6 +71,11 @@
         .setLngLat([-122.70681502698503,45.51957694007428])
         .setHTML('<a href="https://japanesegarden.org/">Check out the Japanese Gardens!</a>')
         .addTo(map);
+
+        var marker3 = new mapboxgl.Marker({color:'pink'})
+            .setLngLat([-122.70681502698503,45.51957694007428])
+            .addTo(map);
+
 
             
 
