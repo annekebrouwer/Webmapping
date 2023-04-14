@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>Fixed Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <!--    1.1.  Include the reference to the Mapbox JavaScript here in the <head> of the page  -->
+      <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <!--    1.2 Include the reference to the Mapbox CSS here in the <head> of the page  -->
+      <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        /* 1.4 Insert the CSS code here between the <style> tags */
+          body { margin:50px; padding:0; }
+           #map1 { position:relative; height:300px; width:50%;margin-left: auto; margin-right:auto;}
+        /* 2.5.2 Insert additional CSS code here between the <style> tags */
+          #map2 { position:relative; height:300px; width:50%;margin-left: auto; margin-right:auto;}
+          /* map 3*/
+          #map3 { position:relative; height:300px; width:50%;margin-left: auto; margin-right:auto;}
+          
+    </style>
+  </head>
+
+  <body>
+        <!-- 1.3 Insert the div for the structure of the page here in the <body> of the page -->
+          <h1 style="text-align:center"> Map 1: </h1>
+          <h4 style="text-align:center">  I was born and raised in North Carolina! Located in western NC are the Appalachain Mountains. In the 
+            eastern (coastal) region of the state are the Outer Banks (sadly the Netflix show was not filmed here).
+            I was raised in the piedmont region, which is located more centrally in the state. 
+          </h4>
+         <div id='map1'></div>
+   <hr>
+   <h1 style="text-align:center"> Map 2:</h1>
+   <h4 style="text-align:center">This is a map of Alamance County- the county where I grew up in NC.
+    There's not a whole lot to do in my county as cities in the area were generally small, but there was a movie
+    theater roughly 25 minutes from my house!  
+  </h4>
+   <div id='map2'></div>
+        
+          <hr>
+          <h1 style="text-align:center"> Map 3:</h1>
+          <h4 style="text-align:center">This is a map of my hometown- Mebane! Mebane is a generally
+          small town, but was a lovely place to grow up. I lived in the historic distric, which was located 
+        in the center of town. In the historic district, we had one main street where my friends
+      and I would hang out and grab some coffee!</h4>
+     <div id='map3'></div>
+     <script>
+            /* Insert the JavaScript within the <script> tags, within the body */
+            // 2.1 Start with the Mapbox access token
+            mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uZWtlYiIsImEiOiJjbGc1aDNkYnAwM2F0M2RteXRia2k1dWhuIn0._D0OOj-qc0InwUuvbEuIgw'; //  Put your access token between the single quotes.
+
+            // 2.2 Then initialize the first map
+            var map = new mapboxgl.Map({
+       container: 'map1', // id of a div on your page, where the map will be inserted
+       style: 'mapbox://styles/mapbox/satellite-streets-v12', // the style URL 'mapbox://styles/mapbox/streets-v11' 
+       center: [-80.0193, 35.7596], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+       zoom: 5.2 // starting zoom 
+       
+   });
+
+
+            // 2.3 Add any other variables (such as popups and markers) to the first map
+            var popup = new mapboxgl.Popup()
+                      .setText('This is my favorite beach on the Outer Banks- Nags head!');
+
+                  var marker = new mapboxgl.Marker({color:'lightblue'})
+                    .setLngLat([-75.615085, 35.932004]) // starting position [lng, lat]
+                    .setPopup(popup) //add the popup named "popup" to this marker 
+		    .addTo(map); // add it to the map with the ID "map"
+
+        var hike = new mapboxgl.Popup()
+          .setText('This is my favorite hike on the Appalachain Trail in North Carolina- Max Patch Mountain!');
+
+            var marker = new mapboxgl.Marker({color:'coral'})
+            .setLngLat([-82.945389,35.688065])
+            .setPopup(hike)
+            .addTo(map);
+            // 2.4 Add arguments to disable the map interactivity here
+            // Disable drag and zoom handlers.
+            map.dragPan.disable();
+               map.scrollZoom.disable();
+               map.boxZoom.disable();
+               map.dragRotate.disable();
+               map.keyboard.disable();
+               map.doubleClickZoom.disable();
+               map.touchZoomRotate.disable();
+               map.touchZoomRotate.disableRotation();
+
+            // 2.5.3 Then initialize the 2nd map
+            var map2 = new mapboxgl.Map({
+         container: 'map2', // id of a div on your page, where the map will be inserted
+         style: 'mapbox://styles/mapbox/satellite-streets-v12', // stylesheet location
+         center: [-79.4378,36.0957], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+         zoom: 9.98 // starting zoom 
+         });
+
+            // 2.5.4 Add any other variables (such as markers) to the second map
+            var popup2 = new mapboxgl.Popup()
+         .setText('This is where the most popular Movie Theatre is located in Alamance County- Southeast Cinemas at Alamance Crossing!');
+
+         var marker2 = new mapboxgl.Marker({color:'mediumaquamarine'})
+           .setLngLat([-79.51107,36.06989]) // starting position [lng, lat] 
+           .setPopup(popup2) //add the popup to the marker 
+           .addTo(map2); // id it to the map with the ID *map2*
+
+            // 2.5.5 Add arguments to disable the second map's interactivity here
+          // Disable drag and zoom handlers. 
+         map2.dragPan.disable();
+         map2.scrollZoom.disable();
+         map2.boxZoom.disable();
+         map2.dragRotate.disable();
+         map2.keyboard.disable();
+         map2.doubleClickZoom.disable();
+         map2.touchZoomRotate.disable();
+         map2.touchZoomRotate.disableRotation();
+        
+        // Thirds map initialize //
+        var map3 = new mapboxgl.Map({
+         container: 'map3', // id of a div on your page, where the map will be inserted
+         style: 'mapbox://styles/mapbox/satellite-streets-v12', // stylesheet location
+         center: [-79.2696, 36.0968], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+         zoom: 14 // starting zoom 
+         });
+
+         // Popups and markers for map 3
+         var popup3 = new mapboxgl.Popup()
+         .setText('This is the location of my favorite coffee shop in my hometown- Filament!.');
+
+         var marker3 = new mapboxgl.Marker({color:'indianred'})
+           .setLngLat([-79.26800, 36.09745]) // starting position [lng, lat] 
+           .setPopup(popup3) //add the popup to the marker 
+           .addTo(map3); // id it to the map with the ID *map3*
+
+            // Disable drag and zoom handlers. 
+           map3.dragPan.disable();
+         map3.scrollZoom.disable();
+         map3.boxZoom.disable();
+         map3.dragRotate.disable();
+         map3.keyboard.disable();
+         map3.doubleClickZoom.disable();
+         map3.touchZoomRotate.disable();
+         map3.touchZoomRotate.disableRotation();
+        </script>
+  </body>
+</html>
