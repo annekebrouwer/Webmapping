@@ -68,10 +68,12 @@
      padding-left: 10px;
    }
 
-        
+   /* color for renter points in the legend */     
    .renter {
-         color:#ff7f50;
+         color:#ff7f50; 
    }
+
+   /* color for the owner points in the legend */
    .owner{
          color:#7f8de1;
    }
@@ -94,13 +96,13 @@
 
     <!--Creates container to display info about map and sources-->
    <div class="descriptionPanel" id="descriptionPanel" style="height: 250px;">
-    <span onClick=panelSelect() id="glyph" class="chevron glyphicon glyphicon-chevron-down"></span>
-    <hr/>
-    <h4>WHAT AM I LOOKING AT?</h4>
-    <p style="margin-left: 10px; margin-right: 10px;">
-      This is a map showing every single person in the Portland Area as a dot. Data is taken from the 2017 US Census, and is accurate at the level of a block, however within each block location is randomized. Points are colored based on the number home owners versus renters on a block.
-    </p>
-    </div>
+      <span onClick=panelSelect() id="glyph" class="chevron glyphicon glyphicon-chevron-down"></span>
+      <hr/>
+      <h4>WHAT AM I LOOKING AT?</h4>
+          <p style="margin-left: 10px; margin-right: 10px;">
+              This is a map showing every single person in the Portland Area as a dot. Data is taken from the 2017 US Census, and is accurate at the level of a block, however within each block location is randomized. Points are colored based on the number home owners versus renters on a block.
+          </p>
+   </div>
 
     <!--This div will creaate a container for our legend, helping the user differentiate between the different colored dots-->
     <div class="LegendContainer">
@@ -123,19 +125,19 @@
         // Add zoom and rotation controls to the map.
          map.addControl(new mapboxgl.NavigationControl());
 
+         // these variables allow the user to interact with the map (show and hide the map description)
          var state = { panelOpen: true };
 
-        function panelSelect(e){
+         function panelSelect(e){
             if(state.panelOpen){
-            document.getElementById('descriptionPanel').style.height = '26px';
-            document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-up";
-            state.panelOpen = false;
-         } else {
-            document.getElementById('descriptionPanel').style.height = '250px';
-            document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
-            state.panelOpen = true;
-    }
-    }
+              document.getElementById('descriptionPanel').style.height = '26px';
+              document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-up";
+              state.panelOpen = false;}
+            
+            else {
+              document.getElementById('descriptionPanel').style.height = '250px';
+              document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
+              state.panelOpen = true;}}
    </script>
 
  </body>
