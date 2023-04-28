@@ -90,7 +90,7 @@
          ownerMap.on('mousemove', 'Owner Data', function (e) {
         
          // Change the cursor style as a UI indicator.
-                ownerMap.getCanvas().style.cursor = 'context-menu';
+                ownerMap.getCanvas().style.cursor = 'default';
 
                 var coordinates = e.lngLat;
                 var description = e.features[0].properties.Own;
@@ -144,7 +144,7 @@
          renterMap.on('mousemove', 'Renter Data', function (e) {
         
          // Change the cursor style as a UI indicator.
-                renterMap.getCanvas().style.cursor = 'context-menu';
+                renterMap.getCanvas().style.cursor = 'default';
     
                 var coordinates = e.lngLat;
                 var description = e.features[0].properties.Rent;
