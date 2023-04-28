@@ -26,6 +26,13 @@
           bottom: 0;
           width: 100%;
           }
+
+          /* change the color of the swiper */
+     .mapboxgl-compare .compare-swiper-vertical {
+          background-color: #5a5a5a;
+          }
+    
+      
       </style>
  </head>
  <body>
@@ -64,16 +71,16 @@
                  paint: {
                  'fill-color':
                  ["step",
-                 ["get", "Own"],   // sequential color scheme
-                 "#f2f0f7",
+                 ["get", "Own"],   // sequential color scheme from color brewer, 5 bins
+                 "#ffffcc",
                  17.0,
-                 "#cbc9e2",
+                 "#c2e699",
                  22.0,
-                 "#9e9ac8",
+                 "#78c679",
                  27.0,
-                 "#756bb1",
+                 "#31a354",
                  32.0,
-                 "#54278f"
+                 "#006837"
                  ],
                  "fill-opacity": 0.7 
                  }       
@@ -101,7 +108,7 @@
             });
             var renterMap = new mapboxgl.Map({
                 container: 'renters', // owners map div 
-                style: 'mapbox://styles/mapbox/dark-v10', // Mapbox light style so we can observe the swipe
+                style: 'mapbox://styles/mapbox/dark-v10', 
                 center: [-122.6784, 45.5152],// Use the same center as your other map so that they are perfectly aligned
                 zoom: 10 
                 });
@@ -120,15 +127,15 @@
                 'fill-color':
                 ["step",
                 ["get", "Rent"],
-                "#feedde",
+                "#fef0d9",
                 17.0,
-                "#fdbe85",   // sequential color scheme
+                "#fdcc8a",   // sequential color scheme frpm color brewer, 5 bins
                 22.0,
-                "#fd8d3c",
+                "#fc8d59",
                 27.0,
-                "#e6550d",
+                "#e34a33",
                 32.0,
-                "#a63603"],
+                "#b30000"],
                 "fill-opacity": 0.7 ,
                 }
                 });
