@@ -39,13 +39,13 @@
             width: 30%;  /* width of parent div */
             padding: 10px;
             border-style: solid;
-            border-color: oldlace;
+            border-color: rgb(248, 245, 245);
             border-radius: 3px; /* rounded corners */
             font-size: 1em;
             text-align: center;
             font-weight: bold;
-            color: black;
-            background: #EC8AF4;
+            color: rgb(248, 245, 245);
+            background: #467e6b;
             cursor:pointer;
         }
         
@@ -78,7 +78,7 @@
         // Initialize the map
         var map = new mapboxgl.Map({
             container: 'map', // id of a div on your page, where the map will be inserted
-            style: 'mapbox://styles/mapbox/dark-v11', // stylesheet location
+            style: 'mapbox://styles/mapbox/light-v11', // stylesheet location
             center: [-122.6788, 45.5212], // starting position [lng, lat] eg. [-122.6788, 45.5212]
             zoom: 13 // starting zoom 
         });
@@ -116,21 +116,21 @@
         /***  MARKERS  ***/
               /***  MARKERS  ***/
         // Marker 1 - Portland
-        var marker1 = new mapboxgl.Marker({color:'#EC8AF4'})
+        var marker1 = new mapboxgl.Marker({color:'#467e6b'})
           .setLngLat([-122.6788,45.5212]) // Portland 
           .setPopup(popup1)
           .addTo(map);
 
         
         // Marker 2 - London 
-       var marker2 = new mapboxgl.Marker({color:'#EC8AF4'})
+        var marker2 = new mapboxgl.Marker({color:'#467e6b'})
           .setLngLat([-0.1534307, 51.501223]) // London 
           .setPopup(popup2)
           .addTo(map);
 
         
         // Marker 3 - Yellowstone
-       var marker3 = new mapboxgl.Marker({color:'#EC8AF4'})
+        var marker3 = new mapboxgl.Marker({color:'#467e6b'})
           .setLngLat([-110.74524187568,44.706216445069]) // Yellowstone
           .setPopup(popup3)
           .addTo(map);
