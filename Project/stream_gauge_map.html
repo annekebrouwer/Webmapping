@@ -77,7 +77,7 @@
     map.on('load', () => {
     map.addSource('gages', {
     type: 'geojson',
-    data: "https://annekebrouwer.github.io/Webmapping/Project/filtered_gages_ii.geojson"})
+    data: "https://annekebrouwer.github.io/Webmapping/Project/final_gages.geojson"})
     map.addLayer({
   	             id: 'marker-colors',
                  type: 'circle',
@@ -89,15 +89,15 @@
                   'circle-color':
                      ["step",
                         ["get", "record_extent"],   // sequential color scheme from color brewer, 5 bins
-                        "#800000",
+                        "#d7191c",
                         0.2,
-                        "#C70039",
+                        "#fdae61",
                         0.4,
-                        "#FFFF00",
+                        "#ffffbf",
                         0.6,
-                        "#808000",
+                        "#abdda4",
                         0.8,
-                        "#008000"
+                        "#2b83ba"
                      ],
                  'circle-stroke-color': 'black'
 
