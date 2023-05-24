@@ -13,22 +13,54 @@
     </head>
 <body>
 <style>
+     .descriptionPanel {
+     position: absolute;
+     bottom: 65px;
+     left: 20px;
+     z-index: 2;
+     width: 300px;
+     height: 40px;
+     background: rgba(250, 247, 247, 0.75);
+     transition: width 2s, height 2s;
+     overflow: hidden;
+     border-radius: 7px;
+   }
+   .layerDescription {
+         color: rgb(19, 18, 18);
+         margin-left: 10px;
+       }
     
 </style>
 <div id="map"></div>
 
+<div class="descriptionPanel" id="descriptionPanel" style="height: 250px;">
+    <span onClick=panelSelect() id="glyph" class="chevron glyphicon glyphicon-chevron-down"></span>
+    <hr/>
+    <h4>WHAT AM I LOOKING AT?</h4>
+    <p style="margin-left: 10px; margin-right: 10px;">
+      This is a map displaying the locations of stream gauges in Oregon using data from USGS. The earliest 
+      of these gauges started recording on April 1st, 1950 and the extent of records in this dataset extend to 
+      March 31, 2021.  
+</div>
+
+<div class="LegendContainer">
+    <div class="legendItem">
+        <span class= 'gages'>&#11044;</span>
+        <span class="layerDescription">Owners</span>
+    </div>
+    <div class="legendItem">
+        <span class="renter">&#11044;</span>
+        <span class="layerDescription">Renters</span>
+    </div>
+</div>
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uZWtlYiIsImEiOiJjbGc1ZGJ5a28wMXBzM21tamZnZm55c2tzIn0.LCxLkdp4WDmUB2hSvfWGtQ';
     
     // ADD THE DATA HERE (II.2)
-    
-    
     var bounds = [
-      [- 125, 42], // southwest bounds
-      [-116, 46.5] // northeast bounds
+      [- 125, 41], // southwest bounds
+      [-116, 47] // northeast bounds
     ];
-
-    
 
     const map = new mapboxgl.Map({
         container: 'map',
@@ -41,76 +73,69 @@
 
     });
 
-    
-         // insert code in the function here  (II.3)
-        
- /* for (var i = 0; i < places.features.length; i++) {
-            var feature = places.features[i];
-            var longitude = feature.geometry.coordinates[0];
-            var latitude = feature.geometry.coordinates[1];
-            var popup = new mapboxgl.Popup()
-                .setHTML(popupContent)
-            var marker = new mapboxgl.Marker()
-                .setLngLat([longitude, latitude])
-                .setPopup(popup)
-                .addTo(map);
-
-            var popupContent = createPopupContent(feature.properties);} */
     // Map's On 'load' function.
     map.on('load', () => {
     map.addSource('gages', {
     type: 'geojson',
-    data: 'filtered_gages_ii.geojson'})
+    data: "https://annekebrouwer.github.io/Webmapping/Project/filtered_gages_ii.geojson"})
     map.addLayer({
   	             id: 'marker-colors',
                  type: 'circle',
+                 
   	             source: 'gages',
                  paint: {
-                  'circle-radius': 4,
+                  'circle-radius': 8,
                   'circle-stroke-width': 2,
-                 'circle-color':
-                 ["step",
-                 ["get", "record_extent"],   // sequential color scheme from color brewer, 5 bins
-                 0.0,
-                 "#ffffcc",
-                 0.2,
-                 "#c2e699",
-                 0.4,
-                 "#78c679",
-                 0.6,
-                 "#31a354",
-                 0.8,
-                 "#006837"
-                 ],
-                 'circle-stroke-color': 'white'
+                  'circle-color':
+                     ["step",
+                        ["get", "record_extent"],   // sequential color scheme from color brewer, 5 bins
+                        "#800000",
+                        0.2,
+                        "#C70039",
+                        0.4,
+                        "#FFFF00",
+                        0.6,
+                        "#808000",
+                        0.8,
+                        "#008000"
+                     ],
+                 'circle-stroke-color': 'black'
+
                  }       
                  });
+                 map.on('click', 'marker-colors', (e) => {
+                 const coordinates = e.features[0].geometry.coordinates.slice();
+                 const properties = e.features[0].properties;
+
+                const popupContent = `
+                    <h3>${properties.STANAME}</h3>
+                    <p>Start Day: ${properties.start_day}</br>
+                        Record Extent (1950-2021): ${Math.round(properties.record_extent * 100, 2)}% </p>`
+                
+                        ;
+
+    new mapboxgl.Popup()
+      .setLngLat(coordinates)
+      .setHTML(popupContent)
+      .addTo(map);
+  });
+});
+    // legend interaction
+    var state = { panelOpen: true };
+
+    function panelSelect(e){
+    if(state.panelOpen){
+        document.getElementById('descriptionPanel').style.height = '26px';
+        document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-up";
+        state.panelOpen = false;
+    } else {
+        document.getElementById('descriptionPanel').style.height = '250px';
+        document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
+        state.panelOpen = true;
+    }
+}
                  
-                 /*for (var i = 0; i < gages.features.length; i++) {
-            var feature = gages.features[i];
-            var longitude = feature.geometry.coordinates[0];
-            var latitude = feature.geometry.coordinates[1];
-            var popup = new mapboxgl.Popup()
-                .setHTML(popupContent)
-            var marker = new mapboxgl.Marker()
-                .setLngLat([longitude, latitude])
-                .setPopup(popup)
-                .addTo(map);
-}});
-                 
-
-
-    function createPopupContent(properties) {
-  // Customize the popup content based on the properties
-    var content = '<div>';
-     content += '<h2>' + properties.STANAME + '</h2>';
-     content += '<p>Station ID: ' + properties.STAID + '</p>';
-     content += '<p>Record Start Date: ' + properties.start_day + '</p>';
-     content += '<p>Record completion (since start day): ' + properties.record_extent * 100 + ' % </p>';
-     return content;
-
-    */    })
-
+            
 
 
 
