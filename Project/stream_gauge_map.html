@@ -13,22 +13,60 @@
     </head>
 <body>
 <style>
+    .LegendContainer {
+     position: absolute;
+     bottom: 20px;
+     left: 20px;
+     z-index: 2;
+     width: 300px;
+     height: 40px;
+     background: rgba(250, 247, 247, .75);
+     transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
+     border-radius: 7px;
+   }
      .descriptionPanel {
      position: absolute;
      bottom: 65px;
      left: 20px;
      z-index: 2;
-     width: 300px;
-     height: 40px;
+     width: 400px;
+     height: 60px;
      background: rgba(250, 247, 247, 0.75);
      transition: width 2s, height 2s;
      overflow: hidden;
      border-radius: 7px;
    }
+   .LegendContainer:active {
+     width: 240px;
+     height: 250px;
+   }
+   .legendItem {
+       margin: 0px;
+       padding-left: 10px;
+       display:inline-block;
+       margin:auto;
+       transform: translate(50%, 50%);
+   }
    .layerDescription {
          color: rgb(19, 18, 18);
          margin-left: 10px;
        }
+    .zero-two {
+        color: #d7191c;
+    }
+    .two-four {
+        color: #fdae61;
+    }
+    .four-six{
+        color: #ffffbf;
+    }
+    .chevron {
+     position: relative;
+     margin-left: 45%;
+     font-size: x-large;
+     color: white;
+   }
+
     
 </style>
 <div id="map"></div>
@@ -45,12 +83,16 @@
 
 <div class="LegendContainer">
     <div class="legendItem">
-        <span class= 'gages'>&#11044;</span>
-        <span class="layerDescription">Owners</span>
+        <span class= 'zero-two'>&#11044;</span>
+        <span class="layerDescription">0-0.2%</span>
     </div>
     <div class="legendItem">
-        <span class="renter">&#11044;</span>
-        <span class="layerDescription">Renters</span>
+        <span class="two-four">&#11044;</span>
+        <span class="layerDescription">0.2-0.4%</span>
+    </div>
+    <div class="legendItem">
+        <span class="four-six">&#11044;</span>
+        <span class="layerDescription">0.4-0.6%</span>
     </div>
 </div>
 <script>
@@ -109,7 +151,7 @@
 
                 const popupContent = `
                     <h3>${properties.STANAME}</h3>
-                    <p>Start Day: ${properties.start_day}</br>
+                    <p>Start Day: ${properties.start_year}</br>
                         Record Extent (1950-2021): ${Math.round(properties.record_extent * 100, 2)}% </p>`
                 
                         ;
