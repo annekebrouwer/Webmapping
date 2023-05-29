@@ -19,7 +19,7 @@
      left: 20px;
      z-index: 2;
      width: 300px;
-     height: 40px;
+     height: 60px;
      background: rgba(250, 247, 247, .75);
      transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
      border-radius: 7px;
@@ -29,7 +29,7 @@
      bottom: 65px;
      left: 20px;
      z-index: 2;
-     width: 400px;
+     width: 300px;
      height: 60px;
      background: rgba(250, 247, 247, 0.75);
      transition: width 2s, height 2s;
@@ -60,6 +60,13 @@
     .four-six{
         color: #ffffbf;
     }
+    .six-eight{
+        color: #abdda4;
+    }
+    .eight-ten{
+        color: #2b83ba;
+    }
+
     .chevron {
      position: relative;
      margin-left: 45%;
@@ -84,16 +91,25 @@
 <div class="LegendContainer">
     <div class="legendItem">
         <span class= 'zero-two'>&#11044;</span>
-        <span class="layerDescription">0-0.2%</span>
+        <span class="layerDescription">0-19%</span>
     </div>
     <div class="legendItem">
         <span class="two-four">&#11044;</span>
-        <span class="layerDescription">0.2-0.4%</span>
+        <span class="layerDescription">20-39%</span>
     </div>
     <div class="legendItem">
         <span class="four-six">&#11044;</span>
-        <span class="layerDescription">0.4-0.6%</span>
+        <span class="layerDescription">40-59%</span>
     </div>
+    <div class="legendItem">
+        <span class="six-eight">&#11044;</span>
+        <span class="layerDescription">60-79%</span>
+    </div>
+    <div class="legendItem">
+        <span class="eight-ten">&#11044;</span>
+        <span class="layerDescription">80-100%</span>
+    </div>
+    
 </div>
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uZWtlYiIsImEiOiJjbGc1ZGJ5a28wMXBzM21tamZnZm55c2tzIn0.LCxLkdp4WDmUB2hSvfWGtQ';
@@ -152,7 +168,7 @@
                 const popupContent = `
                     <h3>${properties.STANAME}</h3>
                     <p>Start Day: ${properties.start_year}</br>
-                        Record Extent (1950-2021): ${Math.round(properties.record_extent * 100, 2)}% </p>`
+                        Record Extent: ${Math.round(properties.record_extent * 100, 2)}% </p>`
                 
                         ;
 
