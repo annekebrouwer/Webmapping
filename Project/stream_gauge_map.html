@@ -4,34 +4,33 @@
     <meta charset="utf-8">
     <title>Filter symbols by toggling a list</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 0; }
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-    </style>
-    </head>
-<body>
-<style>
+
     .LegendContainer {
      position: absolute;
      bottom: 20px;
      left: 20px;
      z-index: 2;
      width: 300px;
-     height: 60px;
-     background: rgba(250, 247, 247, .75);
+     height: 80px;
+     background: rgba(69, 69, 69, .75);
      transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
      border-radius: 7px;
    }
      .descriptionPanel {
      position: absolute;
-     bottom: 65px;
+     bottom: 105px;
      left: 20px;
      z-index: 2;
      width: 300px;
-     height: 60px;
-     background: rgba(250, 247, 247, 0.75);
+     height: 50px;
+     background: rgba(69, 69, 69, .75);
      transition: width 2s, height 2s;
      overflow: hidden;
      border-radius: 7px;
@@ -42,74 +41,77 @@
    }
    .legendItem {
        margin: 0px;
-       padding-left: 10px;
+       padding-left: 0px;
        display:inline-block;
        margin:auto;
        transform: translate(50%, 50%);
    }
    .layerDescription {
-         color: rgb(19, 18, 18);
+         color: rgb(255, 255, 255);
          margin-left: 10px;
        }
-    .zero-two {
-        color: #d7191c;
+    .zero{
+        color: #feedde;
     }
-    .two-four {
-        color: #fdae61;
+    .class1 {
+        color: #fdbe85;
     }
-    .four-six{
-        color: #ffffbf;
+    .class2 {
+        color: #fd8d3c;
     }
-    .six-eight{
-        color: #abdda4;
+    .class3{
+        color: #e6550d;
     }
-    .eight-ten{
-        color: #2b83ba;
+    .class4{
+        color: #a63603;
     }
 
     .chevron {
      position: relative;
      margin-left: 45%;
      font-size: x-large;
-     color: white;
+     color: rgb(255, 255, 255);
    }
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
     
-</style>
+    </style>
+</head>
+<body>
 <div id="map"></div>
 
 <div class="descriptionPanel" id="descriptionPanel" style="height: 250px;">
     <span onClick=panelSelect() id="glyph" class="chevron glyphicon glyphicon-chevron-down"></span>
-    <hr/>
-    <h4>WHAT AM I LOOKING AT?</h4>
-    <p style="margin-left: 10px; margin-right: 10px;">
+    <h4 style="margin-left: 30px; margin-right: 10px; color: #FFFFFF;">Oregon Stream Gauges (1950-2021)</h4>
+    <p style="margin-left: 10px; margin-right: 10px; color: #FFFFFF;font-family: 'Open Sans', sans-serif;">
       This is a map displaying the locations of stream gauges in Oregon using data from USGS. The earliest 
       of these gauges started recording on April 1st, 1950 and the extent of records in this dataset extend to 
       March 31, 2021.  
 </div>
 
 <div class="LegendContainer">
+    <div><h5 style="color: #FFFFFF; margin-left: 40px; margin-right: 10px; margin-bottom: 0px; margin-top: 5px;"> Stream Gauge Record Extent:</h5> </div>
     <div class="legendItem">
-        <span class= 'zero-two'>&#11044;</span>
-        <span class="layerDescription">0-19%</span>
+        <span class="zero">&#11044;</span>
+        <span class="layerDescription">0%</span>
     </div>
     <div class="legendItem">
-        <span class="two-four">&#11044;</span>
-        <span class="layerDescription">20-39%</span>
+        <span class= 'class1'>&#11044;</span>
+        <span class="layerDescription">1-25%</span>
     </div>
     <div class="legendItem">
-        <span class="four-six">&#11044;</span>
-        <span class="layerDescription">40-59%</span>
+        <span class="class2">&#11044;</span>
+        <span class="layerDescription">26-50%</span>
+    </div><br>
+    <div class="legendItem">
+        <span class="class3">&#11044;</span>
+        <span class="layerDescription">51-75%</span>
     </div>
     <div class="legendItem">
-        <span class="six-eight">&#11044;</span>
-        <span class="layerDescription">60-79%</span>
+        <span class="class4">&#11044;</span>
+        <span class="layerDescription">76-100%</span>
     </div>
-    <div class="legendItem">
-        <span class="eight-ten">&#11044;</span>
-        <span class="layerDescription">80-100%</span>
-    </div>
-    
 </div>
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uZWtlYiIsImEiOiJjbGc1ZGJ5a28wMXBzM21tamZnZm55c2tzIn0.LCxLkdp4WDmUB2hSvfWGtQ';
@@ -122,14 +124,20 @@
 
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/outdoors-v12',
+        style: 'mapbox://styles/annekeb/clial3lgv00fp01pv9fpdgia2',
         center: [-120.5542, 43.8041],
         zoom: 6.5,
         minZoom: 3.8,
-        maxZoom: 12,
-        maxBounds: bounds
+        maxZoom: 15,
+        maxBounds: bounds,
+        pitchwithRotate: false,
+        dragRotate: false
 
     });
+    
+    map.addControl(new mapboxgl.NavigationControl({
+        showCompass: false,
+    }));
 
     // Map's On 'load' function.
     map.on('load', () => {
@@ -147,15 +155,16 @@
                   'circle-color':
                      ["step",
                         ["get", "record_extent"],   // sequential color scheme from color brewer, 5 bins
-                        "#d7191c",
-                        0.2,
-                        "#fdae61",
-                        0.4,
-                        "#ffffbf",
-                        0.6,
-                        "#abdda4",
-                        0.8,
-                        "#2b83ba"
+                        "#feedde",
+                        0.01,
+                        "#fdbe85",
+                        0.25,
+                        "#fd8d3c",
+                        0.5,
+                        "#e6550d",
+                        0.75,
+                        "#a63603",
+                        
                      ],
                  'circle-stroke-color': 'black'
 
@@ -169,7 +178,6 @@
                     <h3>${properties.STANAME}</h3>
                     <p>Start Day: ${properties.start_year}</br>
                         Record Extent: ${Math.round(properties.record_extent * 100, 2)}% </p>`
-                
                         ;
 
     new mapboxgl.Popup()
@@ -178,31 +186,21 @@
       .addTo(map);
   });
 });
+
     // legend interaction
+    
     var state = { panelOpen: true };
 
     function panelSelect(e){
     if(state.panelOpen){
-        document.getElementById('descriptionPanel').style.height = '26px';
-        document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-up";
-        state.panelOpen = false;
-    } else {
-        document.getElementById('descriptionPanel').style.height = '250px';
-        document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
-        state.panelOpen = true;
-    }
-}
-                 
-            
-
-
-
-  
-
-
-
-
+     document.getElementById('descriptionPanel').style.height = '26px';
+     document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-up";
+     state.panelOpen = false;}
+   
+    else {
+     document.getElementById('descriptionPanel').style.height = '250px';
+     document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
+     state.panelOpen = true;}}
 </script>
-
 </body>
 </html> 
