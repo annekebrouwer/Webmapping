@@ -166,21 +166,18 @@
                         0.75,
                         "#e6550d",
                         0.99,
-                        "#a63603",
-                        1,
-                        "black"
+                        "#a63603"
                      ],
                  "circle-stroke-color": 'black'
+                 }});
 
-                 }       
-                 });
                  map.on('click', 'marker-colors', (e) => {
                  const coordinates = e.features[0].geometry.coordinates.slice();
                  const properties = e.features[0].properties;
 
                 const popupContent = `
                     <h3>${properties.STANAME}</h3>
-                    <p>Start Day: ${properties.start_day}</br>
+                    <p>Start Day: ${properties.start_year}</br>
                         Record Extent: ${Math.round(properties.record_extent * 100, 2)}%</br>
                         Number of complete years (1950-2009): ${properties.FLYRS1950}</br>
                         Number of complete years (1990-2009): ${properties.FLYRS1990}</p>`
