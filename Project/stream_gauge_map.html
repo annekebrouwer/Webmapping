@@ -50,16 +50,17 @@
          color: rgb(255, 255, 255);
          margin-left: 10px;
        }
-    .zero{
+    .class0{
         color: #feedde;
     }
-    .class1 {
-        color: #fdbe85;
+    .class1{
+        color:#fdbe85;
     }
+
     .class2 {
         color: #fd8d3c;
     }
-    .class3{
+    .class3 {
         color: #e6550d;
     }
     .class4{
@@ -95,24 +96,24 @@
 <div class="LegendContainer">
     <div><h5 style="color: #FFFFFF; margin-left: 40px; margin-right: 10px; margin-bottom: 0px; margin-top: 5px;"> Stream Gauge Record Extent:</h5> </div>
     <div class="legendItem">
-        <span class="zero">&#11044;</span>
-        <span class="layerDescription">0%</span>
+        <span class="class0">&#11044;</span>
+        <span class="layerDescription">0-25%</span>
     </div>
     <div class="legendItem">
         <span class= 'class1'>&#11044;</span>
-        <span class="layerDescription">1-25%</span>
+        <span class="layerDescription">26-50%</span>
     </div>
     <div class="legendItem">
         <span class="class2">&#11044;</span>
-        <span class="layerDescription">26-50%</span>
+        <span class="layerDescription">51-75%</span>
     </div><br>
     <div class="legendItem">
         <span class="class3">&#11044;</span>
-        <span class="layerDescription">51-75%</span>
+        <span class="layerDescription">75-99%</span>
     </div>
     <div class="legendItem">
         <span class="class4">&#11044;</span>
-        <span class="layerDescription">76-100%</span>
+        <span class="layerDescription">100%</span>
     </div>
 </div>
 <script>
@@ -158,17 +159,18 @@
                      ["step",
                         ["get", "record_extent"],   // sequential color scheme from color brewer, 5 bins
                         "#feedde",
-                        0.01,
-                        "#fdbe85",
                         0.25,
-                        "#fd8d3c",
+                        "#fdbe85",
                         0.5,
-                        "#e6550d",
+                        "#fd8d3c",
                         0.75,
+                        "#e6550d",
+                        0.99,
                         "#a63603",
-                        
+                        1,
+                        "black"
                      ],
-                 'circle-stroke-color': 'black'
+                 "circle-stroke-color": 'black'
 
                  }       
                  });
@@ -178,7 +180,7 @@
 
                 const popupContent = `
                     <h3>${properties.STANAME}</h3>
-                    <p>Start Day: ${properties.start_year}</br>
+                    <p>Start Day: ${properties.start_day}</br>
                         Record Extent: ${Math.round(properties.record_extent * 100, 2)}%</br>
                         Number of complete years (1950-2009): ${properties.FLYRS1950}</br>
                         Number of complete years (1990-2009): ${properties.FLYRS1990}</p>`
