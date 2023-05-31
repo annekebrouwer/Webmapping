@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Filter symbols by toggling a list</title>
+    <title>Oregon Stream Gauge Record Keeping</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
@@ -75,8 +75,6 @@
    }
         body { margin: 0; padding: 0; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-
-    
     </style>
 </head>
 <body>
@@ -90,7 +88,7 @@
       of these gauges started recording on April 1st, 1950 and the extent of records in this dataset date to 
       2009. These gauges are put in place to record daily streamflow statistics, but records are not always continuous. The color 
       of each marker represents the percentage of streamflow records each stream gauge has, 100% meaning streamflow statistics were recorded every day between
-      April 1st, 1950 and the January 1st, 2009.   
+      April 1st, 1950 and the end of 2009.   
 </div>
 
 <div class="LegendContainer">
@@ -176,14 +174,15 @@
                  const properties = e.features[0].properties;
 
                 const popupContent = `
-                    <h3>${properties.STANAME}</h3>
+                    <h4>${properties.STANAME}</h4>
                     <p>Start Day: ${properties.start_year}</br>
                         Record Extent: ${Math.round(properties.record_extent * 100, 2)}%</br>
                         Number of complete years (1950-2009): ${properties.FLYRS1950}</br>
                         Number of complete years (1990-2009): ${properties.FLYRS1990}</p>`
                         ;
 
-    new mapboxgl.Popup()
+    new mapboxgl.Popup({className: 'popup'})
+      .setMaxWidth('200')  
       .setLngLat(coordinates)
       .setHTML(popupContent)
       .addTo(map);
