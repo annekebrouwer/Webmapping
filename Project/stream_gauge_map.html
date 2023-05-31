@@ -81,13 +81,15 @@
 <body>
 <div id="map"></div>
 
-<div class="descriptionPanel" id="descriptionPanel" style="height: 250px;">
+<div class="descriptionPanel" id="descriptionPanel" style="height: 400px;">
     <span onClick=panelSelect() id="glyph" class="chevron glyphicon glyphicon-chevron-down"></span>
-    <h4 style="margin-left: 30px; margin-right: 10px; color: #FFFFFF;">Oregon Stream Gauges (1950-2021)</h4>
+    <h4 style="margin-left: 30px; margin-right: 10px; color: #FFFFFF;">Oregon Stream Gauge Record Keeping</h4>
     <p style="margin-left: 10px; margin-right: 10px; color: #FFFFFF;font-family: 'Open Sans', sans-serif;">
-      This is a map displaying the locations of stream gauges in Oregon using data from USGS. The earliest 
-      of these gauges started recording on April 1st, 1950 and the extent of records in this dataset extend to 
-      March 31, 2021.  
+      This is a map displaying the locations of stream gauges in Oregon using data from a file called gages_ii sourced from the USGS website. The earliest 
+      of these gauges started recording on April 1st, 1950 and the extent of records in this dataset date to 
+      2009. These gauges are put in place to record daily streamflow statistics, but records are not always continuous. The color 
+      of each marker represents the percentage of streamflow records each stream gauge has, 100% meaning streamflow statistics were recorded every day between
+      April 1st, 1950 and the January 1st, 2009.   
 </div>
 
 <div class="LegendContainer">
@@ -177,7 +179,9 @@
                 const popupContent = `
                     <h3>${properties.STANAME}</h3>
                     <p>Start Day: ${properties.start_year}</br>
-                        Record Extent: ${Math.round(properties.record_extent * 100, 2)}% </p>`
+                        Record Extent: ${Math.round(properties.record_extent * 100, 2)}%</br>
+                        Number of complete years (1950-2009): ${properties.FLYRS1950}</br>
+                        Number of complete years (1990-2009): ${properties.FLYRS1990}</p>`
                         ;
 
     new mapboxgl.Popup()
@@ -198,7 +202,7 @@
      state.panelOpen = false;}
    
     else {
-     document.getElementById('descriptionPanel').style.height = '250px';
+     document.getElementById('descriptionPanel').style.height = '400px';
      document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
      state.panelOpen = true;}}
 </script>
