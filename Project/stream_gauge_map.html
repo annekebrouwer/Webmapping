@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Martel&family=Secular+One&display=swap" rel="stylesheet">
     <style>
 
     .LegendContainer {
@@ -19,7 +22,7 @@
      z-index: 2;
      width: 300px;
      height: 80px;
-     background: rgba(69, 69, 69, .75);
+     background: rgba(41, 47, 102,0.75);
      transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
      border-radius: 7px;
    }
@@ -30,15 +33,12 @@
      z-index: 2;
      width: 300px;
      height: 50px;
-     background: rgba(69, 69, 69, .75);
+     background:  rgba(41, 47, 102, 0.75);
      transition: width 2s, height 2s;
      overflow: hidden;
      border-radius: 7px;
    }
-   .LegendContainer:active {
-     width: 240px;
-     height: 250px;
-   }
+   
    .legendItem {
        margin: 0px;
        padding-left: 0px;
@@ -49,22 +49,33 @@
    .layerDescription {
          color: rgb(255, 255, 255);
          margin-left: 10px;
+         font-family:'Secular One', sans-serif;
        }
     .class0{
         color: #feedde;
+        font-family: 'Secular One', sans-serif;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
     .class1{
         color:#fdbe85;
+        font-family: 'Secular One', sans-serif;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
 
     .class2 {
         color: #fd8d3c;
+        font-family: 'Secular One', sans-serif;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
     .class3 {
         color: #e6550d;
+        font-family: 'Secular One', sans-serif;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
     .class4{
         color: #a63603;
+        font-family: 'Secular One', sans-serif;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
 
     .chevron {
@@ -75,25 +86,38 @@
    }
         body { margin: 0; padding: 0; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    
+    .mapboxgl-popup-content {
+        background-color: rgb(41, 47, 102);
+        opacity: 75%;
+        color: #f5f5f5;
+        font-family: 'Martel', serif;
+        font-weight: 100;
+        font-size: 10pt;
+        }
+        
+    .mapboxgl-popup-tip{
+        opacity: 0%;
+        }
     </style>
 </head>
 <body>
 <div id="map"></div>
 
-<div class="descriptionPanel" id="descriptionPanel" style="height: 550px;">
+<div class="descriptionPanel" id="descriptionPanel" style="height: 680px;">
     <span onClick=panelSelect() id="glyph" class="chevron glyphicon glyphicon-chevron-down"></span>
-    <h4 style="margin-left: 30px; margin-right: 10px; color: #FFFFFF;">Oregon Stream Gauge Record Keeping</h4>
-    <p style="margin-left: 10px; margin-right: 10px; color: #FFFFFF;font-family: 'Open Sans', sans-serif;">
-      This is a map displaying the locations of stream gauges in Oregon using location data from a USGS sourced file called gages_ii, containing gauge data from 1950-2009. This
-      data is represented by fields 'Start Day', 'Number of complete record years (1950-2009)', and 'Number of complete record years (1990-2009)'.
-      These gauges are put in place to record daily streamflow statistics, but records are not always continuous. More up-to-date USGS daily streamflow data was retrieved in order to count the number
-      of days streamflow statistics were recorded between 1950-2021. This data is represented by a percentage called 'Record Completion (1950-2021)'.  The color 
-      of each marker represents the percentage of streamflow records each stream gauge has, 100% meaning streamflow statistics were recorded every day between
-      April 1st, 1950 and March 31st, 2021.   
+    <h4 style="margin-left: 0px; margin-right: 10px; color: #fd8d3c; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; text-align: center; font-family: 'Secular One', sans-serif; font-size: 16pt;">Oregon Stream Gauge <br> Record Keeping</h4>
+    <p style="margin-left: 10px; margin-right: 10px; color: #ffffff;font-family: 'Martel', serif;">
+      This is a map displaying stream gauges in Oregon using location data from a USGS file called <span style = "font-family: 'Source Code Pro', monospace;">GAGES_ii</span>. The file contains general information about gauges set up between 1950-2009.
+      These gauges are put in place to measure daily streamflow statistics, but records are not always continuous. <br><br> When you select a marker, gauge record keeping information will pop up. 
+      The fields labeled "Complete Record Years" indicate the number of years streamflow statistics
+      were recorded every day within a year at each gauge. More up-to-date daily streamflow data was retrieved from the USGS website in order to count the number
+      of days streamflow statistics were recorded between 1950-2021. This data is represented by a percentage called "Record Completion (1950-2021)". The color of each marker represents the percentage of streamflow records 
+      each stream gauge has, 100% meaning streamflow statistics were recorded every day between April 1st, 1950 and March 31st, 2021. 
 </div>
 
 <div class="LegendContainer">
-    <div><h5 style="color: #FFFFFF; margin-left: 40px; margin-right: 10px; margin-bottom: 0px; margin-top: 5px;"> Stream Gauge Record Completion:</h5> </div>
+    <div><h5 style="color: #fdbe85; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-left: 0px; margin-right: 10px; margin-bottom: 0px; margin-top: 5px; font-family: 'Secular One', sans-serif; font-size: 11.5pt; text-align: center; font-weight: 100;"> Stream Gauge Record Completion:</h5> </div>
     <div class="legendItem">
         <span class="class0">&#11044;</span>
         <span class="layerDescription">0-25%</span>
@@ -108,7 +132,7 @@
     </div><br>
     <div class="legendItem">
         <span class="class3">&#11044;</span>
-        <span class="layerDescription">75-99%</span>
+        <span class="layerDescription">76-99%</span>
     </div>
     <div class="legendItem">
         <span class="class4">&#11044;</span>
@@ -173,16 +197,26 @@
                  map.on('click', 'marker-colors', (e) => {
                  const coordinates = e.features[0].geometry.coordinates.slice();
                  const properties = e.features[0].properties;
-
+                  
+                 var classVar;
+                     if (properties.record_extent > 0.0 && properties.record_extent < 0.26){classVar = "class0";}
+                     else if(properties.record_extent >= 0.26 && properties.record_extent < 0.51){classVar = "class1";}
+                     else if(properties.record_extent >= 0.51 && properties.record_extent < 0.75){classVar = "class2";}
+                     else if(properties.record_extent >= 0.75 && properties.record_extent < 0.99){classVar = "class3";}
+                     else{classVar = "class4";}
+                         
+                     
                 const popupContent = `
-                    <h4>${properties.STANAME}</h4>
+                    <h4 class = "${classVar}">${properties.STANAME}</h4>
                     <p>Start Day: ${properties.start_year}</br>
-                        Number of complete record years (1950-2009): ${properties.FLYRS1950}</br>
-                        Number of complete record years (1990-2009): ${properties.FLYRS1990}</br>
+                       Complete record years (1950-2009): ${properties.FLYRS1950}</br>
+                        Complete record years (1990-2009): ${properties.FLYRS1990}</br>
                         Record Completion (1950-2021): ${Math.round(properties.record_extent * 100, 2)}%</p>`
                         ;
-
-    new mapboxgl.Popup({className: 'popup'})
+                     
+                     //document.getElementById("title").classList.add(classVar);
+                     
+    new mapboxgl.Popup()
       .setMaxWidth('200')  
       .setLngLat(coordinates)
       .setHTML(popupContent)
@@ -201,7 +235,7 @@
      state.panelOpen = false;}
    
     else {
-     document.getElementById('descriptionPanel').style.height = '550px';
+     document.getElementById('descriptionPanel').style.height = '680px';
      document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
      state.panelOpen = true;}}
 </script>
