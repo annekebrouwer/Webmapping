@@ -17,21 +17,21 @@
 
     .LegendContainer {
      position: absolute;
-     bottom: 20px;
+     bottom: 15px;
      left: 20px;
      z-index: 2;
-     width: 300px;
-     height: 80px;
+     width: 400px;
+     height: 60px;
      background: rgba(41, 47, 102,0.75);
      transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
      border-radius: 7px;
    }
      .descriptionPanel {
      position: absolute;
-     bottom: 105px;
+     bottom: 80px;
      left: 20px;
      z-index: 2;
-     width: 300px;
+     width: 400px;
      height: 50px;
      background:  rgba(41, 47, 102, 0.75);
      transition: width 2s, height 2s;
@@ -48,7 +48,7 @@
    }
    .layerDescription {
          color: rgb(255, 255, 255);
-         margin-left: 10px;
+         
          font-family:'Secular One', sans-serif;
        }
     .class0{
@@ -104,7 +104,7 @@
 <body>
 <div id="map"></div>
 
-<div class="descriptionPanel" id="descriptionPanel" style="height: 555px;">
+<div class="descriptionPanel" id="descriptionPanel" style="height: 450px; width: 400px;">
     <span onClick=panelSelect() id="glyph" class="chevron glyphicon glyphicon-chevron-down"></span>
     <h4 style="margin-left: 0px; margin-right: 10px; color: #fd8d3c; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; text-align: center; font-family: 'Secular One', sans-serif; font-size: 16pt;">Oregon Stream Gauge <br> Record Keeping</h4>
     <p style="margin-left: 10px; margin-right: 10px; color: #ffffff;font-family: 'Martel', serif; font-size: 10pt;">
@@ -116,26 +116,26 @@
 </div>
 
 <div class="LegendContainer">
-    <div><h5 style="color: #fdbe85; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-left: 0px; margin-right: 10px; margin-bottom: 0px; margin-top: 5px; font-family: 'Secular One', sans-serif; font-size: 11.5pt; text-align: center; font-weight: 100;"> Stream Gauge Record Completion:</h5> </div>
+    <div><h5 style="color: #fdbe85; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-left: 0px; margin-right: 10px; margin-bottom: 0px; margin-top: 5px; font-family: 'Secular One', sans-serif; font-size: 12pt; text-align: center; font-weight: 100;"> Stream Gauge Record Completion:</h5> </div>
     <div class="legendItem">
         <span class="class0">&#11044;</span>
-        <span class="layerDescription">0-25%</span>
+        <span class="layerDescription">&nbsp;0-25%</span>
     </div>
     <div class="legendItem">
         <span class= 'class1'>&#11044;</span>
-        <span class="layerDescription">26-50%</span>
-    </div>
+        <span class="layerDescription">&nbsp;26-50%</span>
+    </div>&nbsp;&nbsp;
     <div class="legendItem">
         <span class="class2">&#11044;</span>
-        <span class="layerDescription">51-75%</span>
-    </div><br>
+        <span class="layerDescription">&nbsp;51-75%</span>
+    </div>&nbsp;
     <div class="legendItem">
         <span class="class3">&#11044;</span>
-        <span class="layerDescription">76-99%</span>
-    </div>
+        <span class="layerDescription">&nbsp;76-99%</span>
+    </div>&nbsp;&nbsp;&nbsp;
     <div class="legendItem">
         <span class="class4">&#11044;</span>
-        <span class="layerDescription">100%</span>
+        <span class="layerDescription">&nbsp;100%</span>
     </div>
 </div>
 <script>
@@ -234,7 +234,7 @@
      state.panelOpen = false;}
    
     else {
-     document.getElementById('descriptionPanel').style.height = '555px';
+     document.getElementById('descriptionPanel').style.height = '450px';
      document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
      state.panelOpen = true;}}
 </script>
