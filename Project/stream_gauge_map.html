@@ -17,26 +17,26 @@
     <style>
 
     .LegendContainer {
-     position: absolute;
-     bottom: 15px; /* where the bottom of the legend box is placed on the screen */
-     left: 20px; /* where the left edge of the legend box is placed on the screen */
-     z-index: 2;
-     width: 375px; /* width of the legend box */
-     height: 60px; /* height of the legend box */
-     background: rgba(41, 47, 102,0.75); /* color of the legend background */
-     transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
-     border-radius: 7px;
+        position: absolute;
+        bottom: 15px; /* where the bottom of the legend box is placed on the screen */
+        left: 20px; /* where the left edge of the legend box is placed on the screen */
+        z-index: 2;
+        width: 375px; /* width of the legend box */
+        height: 60px; /* height of the legend box */
+        background: rgba(41, 47, 102,0.75); /* color of the legend background */
+        transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
+        border-radius: 7px;
    }
      .descriptionPanel {
-     position: absolute;
-     bottom: 80px; /*where the bottom of the description box is placed on the screen */
-     left: 20px; /* where the left edge of the description box is placed on the screen */
-     z-index: 2;
-     height: 50px;
-     background:  rgba(41, 47, 102, 0.75); /* color of the legend background */
-     transition: width 2s, height 2s; /* ttansition time */
-     overflow: hidden; /* hides text once description is collapsed */
-     border-radius: 7px;
+        position: absolute;
+        bottom: 80px; /*where the bottom of the description box is placed on the screen */
+        left: 20px; /* where the left edge of the description box is placed on the screen */
+        z-index: 2;
+        height: 50px;
+        background:  rgba(41, 47, 102, 0.75); /* color of the legend background */
+        transition: width 2s, height 2s; /* ttansition time */
+        overflow: hidden; /* hides text once description is collapsed */
+        border-radius: 7px;
    }
    
    .legendItem { /* formatting for the items in the legend */
@@ -80,13 +80,15 @@
     }
 
     .chevron { /* style of the arrow at top of the description panel */
-     position: relative;
-     margin-left: 45%;
-     font-size: x-large;
-     color: rgb(255, 255, 255);
+        position: relative;
+        margin-left: 45%;
+        font-size: x-large;
+        color: rgb(255, 255, 255);
    }
-        body { margin: 0; padding: 0; }
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; } /* map fits whole screen */
+    
+    body { margin: 0; padding: 0; }
+    
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; } /* map fits whole screen */
     
     .mapboxgl-popup-content { /* stle for the popup boxes */
         background-color: rgb(41, 47, 102); /* color dark blue */
@@ -119,22 +121,27 @@
 <div class="LegendContainer">
     <div><h5 style="color: #fdbe85; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-left: 0px; margin-right: 0px; margin-bottom: 0px; margin-top: 5px; font-family: 'Secular One', sans-serif; font-size: 12pt; text-align: center; font-weight: 100;"
         > Stream Gauge Record Completion:</h5> </div> <!--style of the label for the legend-->
+    
     <div class="legendItem"> <!--class for legend item created-->
         <span class="class0">&#11044;</span> <!-- class0 created-->
         <span class="layerDescription">&nbsp;0-25%</span> <!--label for legend item with class0-->
     </div>
+    
     <div class="legendItem"><!--class for legend item created-->
         <span class= 'class1'>&#11044;</span><!-- class1 created-->
         <span class="layerDescription">&nbsp;26-50%</span> <!--label for legend item with class1-->
     </div>&nbsp;
+    
     <div class="legendItem"><!--class for legend item created-->
         <span class="class2">&#11044;</span><!-- class2 created-->
         <span class="layerDescription">&nbsp;51-75%</span><!--label for legend item with class2-->
     </div>&nbsp;
+    
     <div class="legendItem"><!--class for legend item created-->
         <span class="class3">&#11044;</span><!-- class3 created-->
         <span class="layerDescription">&nbsp;76-99%</span><!--label for legend item with class3-->
     </div>&nbsp;&nbsp;
+    
     <div class="legendItem"><!--class for legend item created-->
         <span class="class4">&#11044;</span><!-- class4 created-->
         <span class="layerDescription">&nbsp;100%</span><!--label for legend item with class4-->
@@ -218,28 +225,28 @@
                      // other properties are taken from the geoJSON file and labeled by the code on the right 
                      // the bottom line has some math that rounds the percentage to the nearest whole percentage
 
-    new mapboxgl.Popup() // creates popups
-      .setMaxWidth('200')  // max width of popup containers
-      .setLngLat(coordinates) // ties the popup to the coordinates of the markers
-      .setHTML(popupContent) // adds content from the varibale popup content
-      .addTo(map); // adds popup to the map
+                new mapboxgl.Popup() // creates popups
+                    .setMaxWidth('200')  // max width of popup containers
+                    .setLngLat(coordinates) // ties the popup to the coordinates of the markers
+                    .setHTML(popupContent) // adds content from the varibale popup content
+                    .addTo(map); // adds popup to the map
   });
 }); // This is all within the map on load function so it appears on the screen
 
     // legend interaction
-    
     var state = { panelOpen: true };
     // conditional statments helps close and open the description panel and changes the orientation of the arrow
+    
     function panelSelect(e){
-    if(state.panelOpen){ 
-     document.getElementById('descriptionPanel').style.height = '26px';
-     document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-up";
-     state.panelOpen = false;}
+         if(state.panelOpen){ 
+            document.getElementById('descriptionPanel').style.height = '26px';
+            document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-up";
+            state.panelOpen = false;}
    
-    else {
-     document.getElementById('descriptionPanel').style.height = '460px';
-     document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
-     state.panelOpen = true;}}
+        else {
+            document.getElementById('descriptionPanel').style.height = '460px';
+            document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
+            state.panelOpen = true;}}
 </script>
 </body>
 </html> 
