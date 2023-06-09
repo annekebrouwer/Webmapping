@@ -24,21 +24,21 @@
         z-index: 2;
         width: 375px; /* width of the legend box */
         height: 60px; /* height of the legend box */
-        background: rgba(41, 47, 102,0.75); /* color of the legend background */
+        background: rgba(21, 23, 50, 0.8); /* color of the legend background */
         transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
         border-radius: 7px;
-   }
+    }
      .descriptionPanel {
         position: absolute;
         bottom: 80px; /*where the bottom of the description box is placed on the screen */
         left: 20px; /* where the left edge of the description box is placed on the screen */
         z-index: 2;
         height: 50px;
-        background:  rgba(41, 47, 102, 0.75); /* color of the legend background */
+        background:  rgba(21, 23, 50, 0.8); /* color of the legend background */
         transition: width 2s, height 2s; /* ttansition time */
         overflow: hidden; /* hides text once description is collapsed */
         border-radius: 7px;
-   }
+    }
    
    .legendItem { /* formatting for the items in the legend */
        margin: 0px;
@@ -47,35 +47,35 @@
        margin:auto;
        text-align: center;
        transform: translate(50%, 50%);
-   } 
+    } 
    .layerDescription {  /* formatting for the text inside the description panel */
          color: rgb(255, 255, 255); /* white text */
          font-size: 9.5pt; /* size of text */
          font-family: 'Times New Roman', Times, serif; /* font of text */
        }
     .class0{ /* style of the markers with record completion 0-25% and station names in popups */
-        color: #feedde; /* color of marker and station name in popup with this class*/
+        color: #FFF0E0; /* color of marker and station name in popup with this class*/
         font-family: 'Secular One', sans-serif; /*font popup station names with this class*/
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;  /* black boarder to text in popup station name */
     }
     .class1{ /* style of the markers with record completion 26-50% and station names in popups */
-        color:#fdbe85; /* color of marker and station name in popup with this class*/
+        color:#FFCB9E; /* color of marker and station name in popup with this class*/
         font-family: 'Secular One', sans-serif;/*font popup station names with this class*/
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* black boarder to text in popup station name */
     }
 
     .class2 { /* style of the markers with record completion 51-75% and station names in popups */
-        color: #fd8d3c; /* color of marker and station name in popup with this class*/
+        color: #FFA557; /* color of marker and station name in popup with this class*/
         font-family: 'Secular One', sans-serif; /*font popup station names with this class*/
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* black boarder to text in popup station name */
     }
     .class3 { /* style of the markers with record completion 76-99% and station names in popups */
-        color: #e6550d; /* color of marker and station name in popup with this class*/
+        color: #FF7605; /* color of marker and station name in popup with this class*/
         font-family: 'Secular One', sans-serif; /*font popup station names with this class*/
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* black boarder to text in popup station name */
     }
     .class4{ /* style of the markers with record completion 100% and station names in popups */
-        color: #a63603; /* color of marker and station name in popup with this class*/
+        color: #d55f00; /* color of marker and station name in popup with this class*/
         font-family: 'Secular One', sans-serif; /*font popup station names with this class*/
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* black boarder to text in popup station name */
     }
@@ -85,24 +85,27 @@
         margin-left: 45%;
         font-size: x-large;
         color: rgb(255, 255, 255);
-   }
+    }
     
     body { margin: 0; padding: 0; }
     
     #map { position: absolute; top: 0; bottom: 0; width: 100%; } /* map fits whole screen */
     
     .mapboxgl-popup-content { /* stle for the popup boxes */
-        background-color: rgb(41, 47, 102); /* color dark blue */
-        opacity: 75%; /* made slightly transparent */
+        background-color: rgba(21, 23, 50, 0.8); /* color dark blue */ 
         color: #f5f5f5; /* color of text within popup */
         font-family: 'Martel', serif; /* style of text within popup */
         font-weight: 100; /* font thickness in popup*/
         font-size: 10pt; /* font size in popup */
-        }
+    }
         
     .mapboxgl-popup-tip{ /* made the little arrow at the bottom of the popup disappear */
         opacity: 0%; /* made it invisible */
-        }
+    }
+
+    .marker {
+        cursor: pointer;
+    }   
     </style>
 </head>
 <body>
@@ -114,7 +117,7 @@
 
 <div class="descriptionPanel" id="descriptionPanel" style="height: 460px; width: 375px;"> <!--makes div with class for description and set height and width-->
     <span onClick=panelSelect() id="glyph" class="chevron glyphicon glyphicon-chevron-down"></span> <!--created class for arrow so that when clicked it collapses-->
-    <h4 style="margin-left: 0px; margin-right: 10px; color: #fd8d3c; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; text-align: center; font-family: 'Secular One', sans-serif; font-size: 16pt;">Oregon Stream Gauge <br> Record Keeping</h4> <!--style for the title in description panel-->
+    <h4 style="margin-left: 0px; margin-right: 10px; color: #FF7605; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; text-align: center; font-family: 'Secular One', sans-serif; font-size: 16pt;">Oregon Stream Gauge <br> Record Keeping</h4> <!--style for the title in description panel-->
     <p style="margin-left: 10px; margin-right: 10px; color: #ffffff;font-family: 'Martel', serif; font-size: 10pt;"> <!--style for the text in the description panel-->
       This is a map displaying stream gauges in Oregon using location data from a USGS file called <span style = "font-family: 'Source Code Pro', monospace;">GAGES_ii</span>. The file contains general information about gauges set up between 1950-2009.
       These gauges are put in place to measure daily streamflow statistics, but records are not always continuous. <br><br> When you select a marker, gauge record keeping information will pop up. 
@@ -124,32 +127,32 @@
 </div>
 
 <div class="LegendContainer">
-    <div><h5 style="color: #fdbe85; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-left: 0px; margin-right: 0px; margin-bottom: 0px; margin-top: 5px; font-family: 'Secular One', sans-serif; font-size: 12pt; text-align: center; font-weight: 100;"
+    <div><h5 style="color: #FFA557; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-left: 0px; margin-right: 0px; margin-bottom: 0px; margin-top: 5px; font-family: 'Secular One', sans-serif; font-size: 12pt; text-align: center; font-weight: 100;"
         > Stream Gauge Record Completion:</h5> </div> <!--style of the label for the legend-->
     
     <div class="legendItem"> <!--class for legend item created-->
         <span class="class0">&#11044;</span> <!-- class0 created-->
-        <span class="layerDescription">&nbsp;0-25%</span> <!--label for legend item with class0-->
+        <span class="layerDescription">0 - 25%</span> <!--label for legend item with class0-->
     </div>
     
     <div class="legendItem"><!--class for legend item created-->
         <span class= 'class1'>&#11044;</span><!-- class1 created-->
-        <span class="layerDescription">&nbsp;26-50%</span> <!--label for legend item with class1-->
+        <span class="layerDescription">26 - 50%</span> <!--label for legend item with class1-->
     </div>&nbsp;
     
     <div class="legendItem"><!--class for legend item created-->
         <span class="class2">&#11044;</span><!-- class2 created-->
-        <span class="layerDescription">&nbsp;51-75%</span><!--label for legend item with class2-->
+        <span class="layerDescription">51 - 75%</span><!--label for legend item with class2-->
     </div>&nbsp;
     
     <div class="legendItem"><!--class for legend item created-->
         <span class="class3">&#11044;</span><!-- class3 created-->
-        <span class="layerDescription">&nbsp;76-99%</span><!--label for legend item with class3-->
-    </div>&nbsp;&nbsp;
+        <span class="layerDescription">76 - 99%</span><!--label for legend item with class3-->
+    </div>&nbsp;&nbsp;&nbsp;
     
     <div class="legendItem"><!--class for legend item created-->
         <span class="class4">&#11044;</span><!-- class4 created-->
-        <span class="layerDescription">&nbsp;100%</span><!--label for legend item with class4-->
+        <span class="layerDescription">100%</span><!--label for legend item with class4-->
     </div>
 </div>
 <script>
@@ -194,18 +197,28 @@
                   'circle-color': // circle color is going to be different depending on an attribute called record_extent 
                      ["step", // changes the circle color by dividing it into groups 
                         ["get", "record_extent"],   // sequential color scheme from color brewer, 5 bins
-                        "#feedde", // color of circle with attribute value 'record_extent' between 0 and 0.25
+                        "#FFF0E0", // color of circle with attribute value 'record_extent' between 0 and 0.25
                         0.25,
-                        "#fdbe85",// color of circle with attribute value 'record_extent' between 0.26 and 0.50
+                        "#FFCB9E",// color of circle with attribute value 'record_extent' between 0.26 and 0.50
                         0.5,
-                        "#fd8d3c", // color of circle with attribute value 'record_extent' between 0.51 and 0.75
+                        "#FFA557", // color of circle with attribute value 'record_extent' between 0.51 and 0.75
                         0.75,
-                        "#e6550d", // color of circle with attribute value 'record_extent' between 0.75 and 0.99
+                        "#FF7605", // color of circle with attribute value 'record_extent' between 0.75 and 0.99
                         0.99,
-                        "#a63603" // color of circle with attribute value 'record_extent' equal to 1
+                        "#d55f00" // color of circle with attribute value 'record_extent' equal to 1
                      ],
                  "circle-stroke-color": 'black' // color of circle boarder
                  }});
+
+                 // Changes cursor when cursor hovers over a marker
+                map.on('mouseenter', 'marker-colors', () => {
+                map.getCanvas().style.cursor = 'pointer';
+                });
+
+                // Resets cursor when not hovering over a marker
+                map.on('mouseleave', 'marker-colors', () => {
+                map.getCanvas().style.cursor = '';
+                });
 
                  map.on('click', 'marker-colors', (e) => { // retrieves coordinates and properties at the marker when clicked
                  const coordinates = e.features[0].geometry.coordinates.slice();
@@ -252,6 +265,10 @@
             document.getElementById('descriptionPanel').style.height = '460px';
             document.getElementById('glyph').className = "chevron glyphicon glyphicon-chevron-down";
             state.panelOpen = true;}}
+    
+    
+    
+
 </script>
 </body>
 </html> 
